@@ -29,7 +29,7 @@ module.exports = function(grunt) {
         },
         concat: {
             build: {
-                src : ['src/parseDicom.js', 'src/*.js', 'src/util/*.js'],
+                src : ['src/misc/header.js', 'src/parseDicom.js', 'src/*.js', 'src/util/*.js', 'src/misc/footer.js'],
                 dest: 'build/built.js'
             },
             dist: {
