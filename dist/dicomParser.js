@@ -1,4 +1,4 @@
-/*! dicom-parser - v1.0.1 - 2015-04-20 | (c) 2014 Chris Hafey | https://github.com/chafey/dicomParser */
+/*! dicom-parser - v1.1.0 - 2015-05-29 | (c) 2014 Chris Hafey | https://github.com/chafey/dicomParser */
 (function (root, factory) {
 
     // node.js
@@ -33,7 +33,13 @@
      * @throws error if an error occurs while parsing.  The exception object will contain a property dataSet with the
      *         elements successfully parsed before the error.
      */
-     function parseDicom(byteArray, options) {
+var dicomParser = (function(dicomParser) {
+    if(dicomParser === undefined)
+    {
+        dicomParser = {};
+    }
+
+    dicomParser.parseDicom = function(byteArray, options) {
 
         if(byteArray === undefined)
         {
@@ -162,20 +168,10 @@
 
         // This is where we actually start parsing
         return parseTheByteStream();
-    }
+    };
 
-    if(dicomParser === undefined) {
-        // this happens in the AMD case
-        return {
-            parseDicom: parseDicom
-        };
-    }
-    else {
-        // this is the browser global var case
-        dicomParser.parseDicom = parseDicom;
-        return dicomParser;
-    }
-}));
+    return dicomParser;
+})(dicomParser);
 
 /**
  * Internal helper functions for parsing different types from a big-endian byte array
@@ -2109,3 +2105,5 @@ var dicomParser = (function (dicomParser)
 
     return dicomParser;
 }(dicomParser));
+    return dicomParser;
+}));
